@@ -92,6 +92,7 @@ const BULLET_SECTIONS = {
   collaboration: METRIC_REGISTRY.IC_BULLET_COLLAB,
   ai_adoption: METRIC_REGISTRY.IC_BULLET_AI,
   git_output: METRIC_REGISTRY.IC_BULLET_GIT,
+  support: METRIC_REGISTRY.IC_BULLET_SUPPORT,
 } as const;
 
 export type IcBulletSectionId = keyof typeof BULLET_SECTIONS;
@@ -213,6 +214,7 @@ export type IcDashboardSection =
   | "git_output"
   | "ai_adoption"
   | "collaboration"
+  | "support"
   | "loc_trend"
   | "delivery_trend"
   | "time_off";
@@ -224,6 +226,7 @@ export interface IcDashboardData {
   gitOutput: BulletMetric[];
   aiAdoption: BulletMetric[];
   collaboration: BulletMetric[];
+  support: BulletMetric[];
   locTrend: LocDataPoint[];
   deliveryTrend: DeliveryDataPoint[];
   timeOff: TimeOffNotice | null;
@@ -292,6 +295,11 @@ export function useIcDashboardData(
           {
             id: "collaboration",
             metric_id: METRIC_REGISTRY.IC_BULLET_COLLAB,
+            $filter: filter,
+          },
+          {
+            id: "support",
+            metric_id: METRIC_REGISTRY.IC_BULLET_SUPPORT,
             $filter: filter,
           },
           {
@@ -385,6 +393,14 @@ export function useIcDashboardData(
           "ic",
           cat,
         ),
+        support: transformBulletMetrics(
+          get<RawBulletAggregateRow>("support") ?? [],
+          "support",
+          period,
+          undefined,
+          "ic",
+          cat,
+        ),
         locTrend: transformLocTrend(
           get<RawLocTrendRow>("loc_trend") ?? [],
           period,
@@ -404,6 +420,7 @@ export function useIcDashboardData(
           git_output: sectionErrored("git_output"),
           ai_adoption: sectionErrored("ai_adoption"),
           collaboration: sectionErrored("collaboration"),
+          support: sectionErrored("support"),
           loc_trend: sectionErrored("loc_trend"),
           delivery_trend: sectionErrored("delivery_trend"),
           time_off: sectionErrored("time_off"),

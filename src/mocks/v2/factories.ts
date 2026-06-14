@@ -6,6 +6,63 @@ function hashStr(s: string): number {
   return Math.abs(h);
 }
 
+// Support (Zendesk) bullet section. The bare metric_key MUST match the
+// `support_bullet_rows.*` entries in catalog-snapshot.json so
+// transformBulletMetrics resolves labels/units/thresholds from the wire
+// catalog (post-#82 — no compile-in metadata). `support_csat` is a percent
+// quality metric (non-scaling) and `support_kb` is always NULL (no data
+// yet → renders ComingSoon).
+export interface SupportBulletRow {
+  metric_key: string;
+  value: number | null;
+  median: number | null;
+  range_min: number | null;
+  range_max: number | null;
+}
+
+const SUPPORT_BULLET_SPEC: ReadonlyArray<{
+  metric_key: string;
+  median: number;
+  range_min: number;
+  range_max: number;
+  scaling: boolean;
+}> = [
+  { metric_key: "support_active", median: 1, range_min: 0, range_max: 1, scaling: false },
+  { metric_key: "support_updates", median: 40, range_min: 0, range_max: 200, scaling: true },
+  { metric_key: "support_public_comments", median: 30, range_min: 0, range_max: 150, scaling: true },
+  { metric_key: "support_private_comments", median: 20, range_min: 0, range_max: 120, scaling: true },
+  { metric_key: "support_solved", median: 15, range_min: 0, range_max: 80, scaling: true },
+  { metric_key: "support_csat", median: 88, range_min: 0, range_max: 100, scaling: false },
+];
+
+export function mockSupportBulletSection(
+  seed: string,
+  periodDays = 30,
+): SupportBulletRow[] {
+  const scale = periodDays / 30;
+  const rows: SupportBulletRow[] = SUPPORT_BULLET_SPEC.map((s) => {
+    const r = rng(hashStr(`${seed}|${s.metric_key}`));
+    const base = s.median * (0.7 + r() * 0.6);
+    const factor = s.scaling ? scale : 1;
+    return {
+      metric_key: s.metric_key,
+      value: Math.round(base * factor * 10) / 10,
+      median: s.median,
+      range_min: s.range_min,
+      range_max: s.range_max,
+    };
+  });
+  // KB has no data yet → NULL value renders as ComingSoon.
+  rows.push({
+    metric_key: "support_kb",
+    value: null,
+    median: null,
+    range_min: null,
+    range_max: null,
+  });
+  return rows;
+}
+
 function rng(seed: number): () => number {
   let s = seed || 1;
   return () => {

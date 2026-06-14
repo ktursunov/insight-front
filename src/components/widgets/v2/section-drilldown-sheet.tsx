@@ -358,5 +358,24 @@ function DrilldownExtras({
       </div>
     );
   }
+  if (sectionId === "support") {
+    // CSAT is the section's quality metric (a percent). Surface it as a
+    // headline percent summary when present; otherwise the CountersBlock
+    // below renders it (and the always-NULL KB metric) as ComingSoon.
+    const csat = rows.find((r) => r.metric_key === "support_csat");
+    const csatValue = csat ? Number(csat.value) : NaN;
+    if (!csat || !Number.isFinite(csatValue)) return null;
+    return (
+      <div className="grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-3">
+        <SummaryWithBreakdown
+          label={csat.label}
+          description={csat.sublabel}
+          value={csatValue}
+          unit={csat.unit || "%"}
+          breakdown={[]}
+        />
+      </div>
+    );
+  }
   return null;
 }

@@ -1303,6 +1303,140 @@
       }
     },
     {
+      "id": "019e83b1-5001-7000-a001-000000000001",
+      "metric_key": "support_bullet_rows.support_active",
+      "label": "Active Support Members",
+      "sublabel": "Zendesk · people with any support activity · period total",
+      "unit": "people",
+      "higher_is_better": true,
+      "is_member_scale": false,
+      "source_tags": [
+        "zendesk"
+      ],
+      "schema_status": "ok",
+      "thresholds": {
+        "good": 1,
+        "warn": 0,
+        "resolved_from": "product-default",
+        "bounded_by_lock": false
+      }
+    },
+    {
+      "id": "019e83b1-5001-7000-a001-000000000002",
+      "metric_key": "support_bullet_rows.support_updates",
+      "label": "Ticket Updates",
+      "sublabel": "Zendesk · ticket updates authored · period total",
+      "unit": "updates",
+      "higher_is_better": true,
+      "is_member_scale": false,
+      "source_tags": [
+        "zendesk"
+      ],
+      "schema_status": "ok",
+      "thresholds": {
+        "good": 40,
+        "warn": 15,
+        "resolved_from": "product-default",
+        "bounded_by_lock": false
+      }
+    },
+    {
+      "id": "019e83b1-5001-7000-a001-000000000003",
+      "metric_key": "support_bullet_rows.support_public_comments",
+      "label": "Public Comments",
+      "sublabel": "Zendesk · public replies to requesters · period total",
+      "unit": "comments",
+      "higher_is_better": true,
+      "is_member_scale": false,
+      "source_tags": [
+        "zendesk"
+      ],
+      "schema_status": "ok",
+      "thresholds": {
+        "good": 30,
+        "warn": 10,
+        "resolved_from": "product-default",
+        "bounded_by_lock": false
+      }
+    },
+    {
+      "id": "019e83b1-5001-7000-a001-000000000004",
+      "metric_key": "support_bullet_rows.support_private_comments",
+      "label": "Private Comments",
+      "sublabel": "Zendesk · internal notes on tickets · period total",
+      "unit": "comments",
+      "higher_is_better": true,
+      "is_member_scale": false,
+      "source_tags": [
+        "zendesk"
+      ],
+      "schema_status": "ok",
+      "thresholds": {
+        "good": 20,
+        "warn": 8,
+        "resolved_from": "product-default",
+        "bounded_by_lock": false
+      }
+    },
+    {
+      "id": "019e83b1-5001-7000-a001-000000000005",
+      "metric_key": "support_bullet_rows.support_solved",
+      "label": "Tickets Solved",
+      "sublabel": "Zendesk · tickets moved to solved · period total",
+      "unit": "tickets",
+      "higher_is_better": true,
+      "is_member_scale": false,
+      "source_tags": [
+        "zendesk"
+      ],
+      "schema_status": "ok",
+      "thresholds": {
+        "good": 15,
+        "warn": 5,
+        "resolved_from": "product-default",
+        "bounded_by_lock": false
+      }
+    },
+    {
+      "id": "019e83b1-5001-7000-a001-000000000006",
+      "metric_key": "support_bullet_rows.support_csat",
+      "label": "CSAT",
+      "sublabel": "Zendesk · customer satisfaction · % positive ratings",
+      "unit": "%",
+      "format": "percent",
+      "higher_is_better": true,
+      "is_member_scale": false,
+      "source_tags": [
+        "zendesk"
+      ],
+      "schema_status": "ok",
+      "thresholds": {
+        "good": 90,
+        "warn": 75,
+        "resolved_from": "product-default",
+        "bounded_by_lock": false
+      }
+    },
+    {
+      "id": "019e83b1-5001-7000-a001-000000000007",
+      "metric_key": "support_bullet_rows.support_kb",
+      "label": "Knowledge Base Contributions",
+      "sublabel": "Zendesk Guide · KB articles created or edited · period total",
+      "unit": "articles",
+      "higher_is_better": true,
+      "is_member_scale": false,
+      "source_tags": [
+        "zendesk"
+      ],
+      "schema_status": "ok",
+      "thresholds": {
+        "good": 3,
+        "warn": 1,
+        "resolved_from": "product-default",
+        "bounded_by_lock": false
+      }
+    },
+    {
       "id": "019e83b1-43b5-7993-a03d-96d232f5f00c",
       "metric_key": "ic_kpis.ai_loc_share_pct",
       "label": "AI Code Acceptance",

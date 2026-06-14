@@ -20,6 +20,7 @@ const SECTION_METRIC_IDS = [
   { sectionId: "task_delivery", metricId: METRIC_REGISTRY.IC_BULLET_DELIVERY },
   { sectionId: "git_output", metricId: METRIC_REGISTRY.IC_BULLET_GIT },
   { sectionId: "collaboration", metricId: METRIC_REGISTRY.IC_BULLET_COLLAB },
+  { sectionId: "support", metricId: METRIC_REGISTRY.IC_BULLET_SUPPORT },
 ] as const;
 
 async function fetchMemberBullets(

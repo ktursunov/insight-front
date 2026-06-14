@@ -126,6 +126,10 @@ export function TeamViewV2Screen({ teamId, viewerEmail }: TeamViewV2ScreenProps)
       "ai_adoption",
       sectionData?.bySection.ai_adoption ?? [],
     ),
+    support: orderRowsForSection(
+      "support",
+      sectionData?.bySection.support ?? [],
+    ),
   };
 
   const heroSections = TEAM_SECTIONS.map((s) => ({

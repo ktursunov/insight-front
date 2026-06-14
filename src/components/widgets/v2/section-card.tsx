@@ -32,6 +32,12 @@ const COLLAB_PREVIEW_KEYS = [
   "m365_emails_sent",
 ];
 
+const SUPPORT_PREVIEW_KEYS = [
+  "support_updates",
+  "support_public_comments",
+  "support_solved",
+];
+
 function pickPreviewRows(
   sectionId: string | undefined,
   rows: BulletMetric[],
@@ -39,6 +45,12 @@ function pickPreviewRows(
   if (sectionId === "collaboration") {
     const byKey = new Map(rows.map((r) => [r.metric_key, r]));
     return COLLAB_PREVIEW_KEYS.map((k) => byKey.get(k)).filter(
+      (r): r is BulletMetric => r != null && hasBulletValue(r),
+    );
+  }
+  if (sectionId === "support") {
+    const byKey = new Map(rows.map((r) => [r.metric_key, r]));
+    return SUPPORT_PREVIEW_KEYS.map((k) => byKey.get(k)).filter(
       (r): r is BulletMetric => r != null && hasBulletValue(r),
     );
   }

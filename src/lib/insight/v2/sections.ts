@@ -3,7 +3,8 @@ export type IcSectionId =
   | "git_output"
   | "code_quality"
   | "collaboration"
-  | "ai_adoption";
+  | "ai_adoption"
+  | "support";
 
 export type IcHeroSectionId = IcSectionId;
 
@@ -11,7 +12,8 @@ export type TeamSectionId =
   | "task_delivery"
   | "code_quality"
   | "collaboration"
-  | "ai_adoption";
+  | "ai_adoption"
+  | "support";
 
 export const IC_SECTIONS: ReadonlyArray<{ id: IcSectionId; label: string }> = [
   { id: "task_delivery", label: "Task delivery" },
@@ -19,6 +21,7 @@ export const IC_SECTIONS: ReadonlyArray<{ id: IcSectionId; label: string }> = [
   { id: "code_quality", label: "Code quality" },
   { id: "collaboration", label: "Collaboration" },
   { id: "ai_adoption", label: "AI dev tools" },
+  { id: "support", label: "Support" },
 ] as const;
 
 export const IC_HERO_SECTIONS: ReadonlyArray<{
@@ -34,4 +37,5 @@ export const TEAM_SECTIONS: ReadonlyArray<{
   { id: "code_quality", label: "Code quality" },
   { id: "collaboration", label: "Collaboration" },
   { id: "ai_adoption", label: "AI adoption" },
+  { id: "support", label: "Support" },
 ] as const;

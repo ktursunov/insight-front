@@ -35,6 +35,15 @@ export const METRIC_ORDER_BY_SECTION: Record<string, string[]> = {
     "m365_emails_received",
     "m365_emails_read",
   ],
+  support: [
+    "support_active",
+    "support_updates",
+    "support_public_comments",
+    "support_private_comments",
+    "support_solved",
+    "support_csat",
+    "support_kb",
+  ],
   ai_adoption: [
     "active_ai_members",
     "ai_loc_share2",

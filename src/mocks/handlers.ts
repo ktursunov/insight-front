@@ -23,6 +23,7 @@ import {
   mockKpiPeerMedians,
   mockPeerCohortStats,
   mockSectionTrend,
+  mockSupportBulletSection,
 } from "./v2/factories";
 
 const wrap = <T>(items: T[]) => ({
@@ -149,6 +150,10 @@ const metricHandlers: Record<string, Handler> = {
       mockTeamBulletSection("ai_adoption", seedOf(teamId), periodDays),
     );
   },
+  [METRIC_REGISTRY.TEAM_BULLET_SUPPORT]: (body) => {
+    const { teamId, periodDays } = parseFilter(body);
+    return wrap(mockSupportBulletSection(teamId ?? "team", periodDays));
+  },
 
   [METRIC_REGISTRY.IC_KPIS]: (body) => {
     const { personId, periodDays } = parseFilter(body);
@@ -190,6 +195,10 @@ const metricHandlers: Record<string, Handler> = {
     return wrap(
       mockIcBulletSection("git_output", seedOf(personId), periodDays),
     );
+  },
+  [METRIC_REGISTRY.IC_BULLET_SUPPORT]: (body) => {
+    const { personId, periodDays } = parseFilter(body);
+    return wrap(mockSupportBulletSection(personId ?? "person", periodDays));
   },
   [METRIC_REGISTRY.IC_CHART_LOC]: (body) => {
     const { periodDays } = parseFilter(body);
