@@ -33,6 +33,7 @@ const META_FALLBACK = (metricKey: string): MetricMeta => ({
 const SECTION_ORDER: ReadonlyArray<TeamMetricsSectionId> = [
   "task_delivery",
   "collaboration",
+  "support",
   "ai_adoption",
   "git_output",
 ];
@@ -40,6 +41,7 @@ const SECTION_ORDER: ReadonlyArray<TeamMetricsSectionId> = [
 const SECTION_LABEL_KEY: Record<TeamMetricsSectionId, string> = {
   task_delivery: "team_metrics_modal.sections.task_delivery",
   collaboration: "team_metrics_modal.sections.collaboration",
+  support: "team_metrics_modal.sections.support",
   ai_adoption: "team_metrics_modal.sections.ai_adoption",
   git_output: "team_metrics_modal.sections.git_output",
 };

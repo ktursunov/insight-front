@@ -230,6 +230,24 @@ export function EngineeringDashboard({
         </div>
       </CollapsibleSection>
 
+      <CollapsibleSection
+        title={t("ic_dashboard.sections.support")}
+        storageKey="insight:ic-dashboard:support"
+      >
+        <div className="p-4">
+          <MetricCard
+            title={t("ic_dashboard.sections.support")}
+            metrics={dashQ.data?.support ?? []}
+            columns={2}
+            mode={viewMode}
+            personName={person?.display_name}
+            onDrillClick={handleDrillClick}
+            onRetry={() => dashQ.refetch()}
+            {...sectionState("support")}
+          />
+        </div>
+      </CollapsibleSection>
+
       <DrillModal
         drill={drillQ.data ?? null}
         open={Boolean(drillId)}

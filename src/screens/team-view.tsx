@@ -150,6 +150,13 @@ export function TeamViewScreen({ teamId, viewerEmail }: TeamViewScreenProps) {
     period,
     dateRange,
   );
+  const supportQ = useTeamBulletSection(
+    "support",
+    teamId,
+    teamSize,
+    period,
+    dateRange,
+  );
   const aiQ = useTeamBulletSection(
     "ai_adoption",
     teamId,
@@ -188,6 +195,7 @@ export function TeamViewScreen({ teamId, viewerEmail }: TeamViewScreenProps) {
     else if (sid === "code_quality") void qualityQ.refetch();
     else if (sid === "estimation") void estimationQ.refetch();
     else if (sid === "collaboration") void collabQ.refetch();
+    else if (sid === "support") void supportQ.refetch();
     else void aiQ.refetch();
   };
 
@@ -268,6 +276,7 @@ export function TeamViewScreen({ teamId, viewerEmail }: TeamViewScreenProps) {
           estimation: estimationQ.data,
           ai_adoption: aiMetrics,
           collaboration: collabQ.data,
+          support: supportQ.data,
         }}
         status={{
           task_delivery: bulletStatus(taskQ),
@@ -275,6 +284,7 @@ export function TeamViewScreen({ teamId, viewerEmail }: TeamViewScreenProps) {
           estimation: bulletStatus(estimationQ),
           ai_adoption: bulletStatus(aiQ),
           collaboration: bulletStatus(collabQ),
+          support: bulletStatus(supportQ),
         }}
         viewMode={viewMode}
         onDrillClick={handleDrillClick}

@@ -8,6 +8,7 @@ import type { TeamMember } from "@/types/insight";
 export type TeamMetricsSectionId =
   | "task_delivery"
   | "collaboration"
+  | "support"
   | "ai_adoption"
   | "git_output";
 
@@ -17,6 +18,7 @@ const SECTIONS: ReadonlyArray<{
 }> = [
   { id: "task_delivery", metricId: METRIC_REGISTRY.IC_BULLET_DELIVERY },
   { id: "collaboration", metricId: METRIC_REGISTRY.IC_BULLET_COLLAB },
+  { id: "support", metricId: METRIC_REGISTRY.IC_BULLET_SUPPORT },
   { id: "ai_adoption", metricId: METRIC_REGISTRY.IC_BULLET_AI },
   { id: "git_output", metricId: METRIC_REGISTRY.IC_BULLET_GIT },
 ];

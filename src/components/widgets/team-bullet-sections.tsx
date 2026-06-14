@@ -13,7 +13,8 @@ type SectionId =
   | "code_quality"
   | "estimation"
   | "ai_adoption"
-  | "collaboration";
+  | "collaboration"
+  | "support";
 
 export interface TeamBulletSectionsProps {
   sections: Record<SectionId, BulletMetric[] | undefined>;
@@ -235,6 +236,49 @@ function CollaborationSection({
   );
 }
 
+function SupportSection({
+  metrics,
+  onDrillClick,
+}: {
+  metrics: BulletMetric[];
+  onDrillClick?: (id: string) => void;
+}) {
+  const left = metrics.filter((_, i) => i % 2 === 0);
+  const right = metrics.filter((_, i) => i % 2 !== 0);
+  return (
+    <CollapsibleSection
+      title="Support"
+      storageKey="insight:team-view:support"
+    >
+      <div className="px-4 py-3">
+        <Legend />
+        <div className="mt-2 grid grid-cols-1 gap-3.5 sm:grid-cols-2">
+          <div className="flex flex-col gap-4">
+            {left.map((m) => (
+              <BulletChart
+                key={m.metric_key}
+                metric={m}
+                onDrillClick={onDrillClick}
+                mode="chart"
+              />
+            ))}
+          </div>
+          <div className="flex flex-col gap-4">
+            {right.map((m) => (
+              <BulletChart
+                key={m.metric_key}
+                metric={m}
+                onDrillClick={onDrillClick}
+                mode="chart"
+              />
+            ))}
+          </div>
+        </div>
+      </div>
+    </CollapsibleSection>
+  );
+}
+
 function SectionPlaceholder({
   title,
   kind,
@@ -270,6 +314,7 @@ export function TeamBulletSections({
   const estimation = sections.estimation;
   const aiAdoption = sections.ai_adoption;
   const collab = sections.collaboration;
+  const support = sections.support;
 
   function renderSection(
     sid: SectionId,
@@ -330,6 +375,10 @@ export function TeamBulletSections({
           metrics={collab ?? []}
           onDrillClick={onDrillClick}
         />
+      ))}
+
+      {renderSection("support", "Support", () => (
+        <SupportSection metrics={support ?? []} onDrillClick={onDrillClick} />
       ))}
     </div>
   );

@@ -161,6 +161,15 @@ const BULLET_DISPLAY_ORDER: readonly string[] = [
   'teams_meetings',
   'zoom_meetings',
   'meeting_free',
+
+  // support
+  'support_active',
+  'support_updates',
+  'support_public_comments',
+  'support_private_comments',
+  'support_solved',
+  'support_csat',
+  'support_kb',
 ];
 
 const ORDER_INDEX = new Map(BULLET_DISPLAY_ORDER.map((k, i) => [k, i]));

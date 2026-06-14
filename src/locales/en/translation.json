@@ -44,6 +44,7 @@
       "git_output": "Git output",
       "code_quality": "Code quality",
       "collaboration": "Collaboration",
+      "support": "Support",
       "ai_adoption": "AI adoption"
     },
     "section_blocks": {
@@ -140,6 +141,7 @@
     "sections": {
       "task_delivery": "Delivery",
       "collaboration": "Collaboration",
+      "support": "Support",
       "ai_adoption": "AI Adoption",
       "git_output": "Git"
     }
@@ -155,7 +157,8 @@
       "delivery_trends_subtitle": "Jira + Bitbucket · activity counts · Commits, PRs and Tasks are independent signals",
       "ai_dev_tools_title": "AI Dev Tools & AI Chat",
       "ai_adoption": "AI Adoption",
-      "collaboration": "Collaboration"
+      "collaboration": "Collaboration",
+      "support": "Support"
     }
   },
   "sales_dashboard": {

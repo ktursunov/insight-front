@@ -20,7 +20,7 @@ type SnapshotMetric = { metric_key?: string; unit?: string };
 const BULLET_KEYS_BY_SECTION: Map<string, Array<{ metric_key: string; unit: string }>> = (() => {
   const out = new Map<string, Array<{ metric_key: string; unit: string }>>();
   const metrics = (catalogSnapshot as { metrics?: SnapshotMetric[] }).metrics ?? [];
-  for (const section of ["task_delivery", "git_output", "code_quality", "ai_adoption", "collaboration"]) {
+  for (const section of ["task_delivery", "git_output", "code_quality", "ai_adoption", "collaboration", "support"]) {
     const prefixDot = `${prefixForBulletSection(section)}.`;
     const rows: Array<{ metric_key: string; unit: string }> = [];
     for (const m of metrics) {
@@ -371,6 +371,13 @@ const MOCK_BULLET_DIST: Partial<Record<string, MockBulletDist>> = {
   teams_meetings:             { median: 28,    range_min: 0,  range_max: 80 },
   zoom_meetings:              { median: 9,     range_min: 0,  range_max: 40 },
   meeting_free:               { median: 5,     range_min: 0,  range_max: 15 },
+  support_active:             { median: 4,     range_min: 0,  range_max: 12 },
+  support_updates:            { median: 120,   range_min: 0,  range_max: 500 },
+  support_public_comments:    { median: 80,    range_min: 0,  range_max: 300 },
+  support_private_comments:   { median: 40,    range_min: 0,  range_max: 200 },
+  support_solved:             { median: 32,    range_min: 0,  range_max: 120 },
+  support_csat:               { median: 88,    range_min: 0,  range_max: 100 },
+  support_kb:                 { median: 0,     range_min: 0,  range_max: 20 },
 };
 
 export function mockTeamBulletSection(
@@ -512,7 +519,7 @@ export function mockTeamScenario(teamId = 'bob.park@example.com'): {
   const teamSeed = hashStr(teamId);
   const members = mockTeamMemberRowsForTeam(teamId);
 
-  const bulletSections = ['task_delivery', 'code_quality', 'estimation', 'ai_adoption', 'collaboration'];
+  const bulletSections = ['task_delivery', 'code_quality', 'estimation', 'ai_adoption', 'collaboration', 'support'];
   const bullets: Record<string, RawBulletAggregateRow[]> = {};
   for (const section of bulletSections) {
     bullets[section] = mockTeamBulletSection(section, teamSeed);
