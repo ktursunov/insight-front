@@ -1,0 +1,41 @@
+name: Sync upstream
+
+# Keeps this fork's main up to date with constructorfabric/insight-front.
+# Scheduled workflows only run from the default branch, so this file lives on
+# main. Because main therefore carries this one extra commit, it has "diverged"
+# from upstream and a fast-forward-only sync (gh repo sync) would refuse. So we
+# merge upstream/main into main instead: it never force-pushes (local pulls stay
+# clean) and never deletes this workflow. Upstream never touches this file, so
+# the merge is always conflict-free in practice.
+on:
+  schedule:
+    - cron: '0 6 * * *' # daily at 06:00 UTC
+  workflow_dispatch: # manual "Run workflow" button
+
+concurrency:
+  group: sync-upstream
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    name: Merge upstream/main
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Merge upstream/main
+        run: |
+          git remote add upstream https://github.com/constructorfabric/insight-front.git
+          git fetch upstream main
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git merge --no-edit upstream/main
+          git push origin main
